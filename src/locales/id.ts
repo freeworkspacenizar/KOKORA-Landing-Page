@@ -47,6 +47,7 @@ export const localeID: LocaleDictionary = {
     badge: 'Anatomi Kelapa',
     title: 'SATU KELAPA. BEGITU BANYAK CERITA.',
     subtitle: 'Scroll perlahan untuk menjelajahi keajaiban setiap lapisan kelapa muda nusantara.',
+    scrollCue: 'Gulir perlahan untuk mengurai dan merangkai kembali anatomi kelapa',
     cards: [
       {
         id: 'kulit-luar',
@@ -85,6 +86,7 @@ export const localeID: LocaleDictionary = {
         id: 'vco-cold-pressed',
         name: 'Virgin Coconut Oil (VCO) Cold-Pressed',
         tagline: 'Kemurnian Ekstraksi Dingin Pertama',
+        badge: 'Produk Unggulan',
         category: 'Perawatan Alami & Nutrisi',
         description: 'Minyak kelapa murni yang diproses tanpa pemanasan kimia untuk menjaga nutrisi alami, asam laurat, dan aroma segar khas kelapa nusantara.',
         specs: [
@@ -98,6 +100,7 @@ export const localeID: LocaleDictionary = {
         id: 'raw-coconut-water',
         name: 'Raw Organic Coconut Water',
         tagline: 'Hidrasi Alami Dari Alam',
+        badge: 'Hidrasi Alami',
         category: 'Minuman Segar Alami',
         description: 'Air kelapa muda murni yang kaya elektrolit esensial, kalium, dan magnesium untuk memulihkan hidrasi tubuh secara alami dan menyegarkan.',
         specs: [
@@ -111,6 +114,7 @@ export const localeID: LocaleDictionary = {
         id: 'artisan-coconut-sugar',
         name: 'Artisan Granulated Coconut Sugar',
         tagline: 'Pemanis Alami Beraroma Karamel',
+        badge: 'Pemanis Alami',
         category: 'Pangan & Kuliner Alami',
         description: 'Gula kelapa kristal yang dibuat dari nira kelapa segar pilihan oleh pengrajin lokal dengan indeks glikemik rendah dan rasa manis lembut bernuansa karamel.',
         specs: [
@@ -124,6 +128,7 @@ export const localeID: LocaleDictionary = {
         id: 'eco-charcoal-briquettes',
         name: 'Eco-Friendly Coconut Shell Charcoal',
         tagline: 'Energi Bersih Dari Limbah Alami',
+        badge: 'Energi Bersih',
         category: 'Keberlanjutan & Energi Alami',
         description: 'Briket arang tempurung kelapa ramah lingkungan dengan panas tinggi, masa bakar panjang, tanpa asap menyengat dan tanpa bahan kimia berbahaya.',
         specs: [
@@ -143,6 +148,10 @@ export const localeID: LocaleDictionary = {
     viewDetails: 'Detail & Spesifikasi',
     rotateNotice: 'Geser untuk memutar 360°',
     orderWhatsApp: 'Pesan Botol Ini',
+    resetView: 'Reset Sudut',
+    autoRotate: 'Putar 360°',
+    pauseRotate: 'Jeda',
+    selectedVariantPrefix: 'Varian Terpilih',
     hotspots: {
       coldPressed: {
         id: 'cold-pressed',
@@ -206,6 +215,8 @@ export const localeID: LocaleDictionary = {
     colCatalog: 'Katalog',
     colContact: 'Kontak & Lokasi',
     colSocial: 'Media Sosial',
+    contactWhatsApp: 'WhatsApp Konsultasi',
+    socialDisclaimer: 'Diproduksi dengan prinsip keberlanjutan dan kemitraan adil bersama petani kelapa Indonesia.',
     linkHome: 'Beranda',
     linkStory: 'Cerita Kami',
     linkDeconstruct: 'Dekonstruksi 3D',

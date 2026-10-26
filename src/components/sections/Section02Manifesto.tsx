@@ -43,7 +43,7 @@ export const Section02Manifesto: React.FC = () => {
         },
       });
     });
-  });
+  }, [manifestoText]);
 
   const pillars = [
     {

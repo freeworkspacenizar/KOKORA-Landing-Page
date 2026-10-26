@@ -24,6 +24,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const category = localized?.category || product.category;
   const description = localized?.description || product.description;
   const specs = localized?.specs || product.specs;
+  const badge = localized?.badge || product.badge;
 
   return (
     <div
@@ -39,7 +40,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <span className="text-xs uppercase tracking-wider font-semibold text-coconut-husk">
             {category}
           </span>
-          {product.badge && (
+          {badge && (
             <span
               className={`inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full ${
                 product.isHero
@@ -48,7 +49,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               }`}
             >
               {product.isHero && <Sparkles size={12} />}
-              {product.badge}
+              {badge}
             </span>
           )}
         </div>

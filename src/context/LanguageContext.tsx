@@ -20,6 +20,17 @@ const getInitialLocale = (): Locale => {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved === 'id' || saved === 'en') return saved;
+
+    // In automated test environments (vitest / jsdom), default safely to 'id'
+    if (typeof import.meta !== 'undefined' && import.meta.env?.MODE === 'test') {
+      return 'id';
+    }
+
+    if (typeof navigator !== 'undefined' && navigator.language) {
+      if (navigator.language.toLowerCase().startsWith('en')) {
+        return 'en';
+      }
+    }
   } catch {
     // localStorage restricted or disabled
   }

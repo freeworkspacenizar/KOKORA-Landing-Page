@@ -166,7 +166,7 @@ export const Section03Deconstruct: React.FC = () => {
 
       {/* Bottom Scroll Cue */}
       <div className="relative z-20 text-center text-xs text-coconut-cream/50 mt-4">
-        <span>Gulir perlahan untuk mengurai dan merangkai kembali anatomi kelapa</span>
+        <span>{t.deconstruct.scrollCue}</span>
       </div>
     </section>
   );

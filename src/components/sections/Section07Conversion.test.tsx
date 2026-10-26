@@ -27,6 +27,7 @@ describe('Section 07 Conversion', () => {
     const enBtn = screen.getByRole('button', { name: /English/i });
     fireEvent.click(enBtn);
 
+    expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(/READY TO EXPERIENCE PURE COCONUT\?/i);
     expect(screen.getByRole('link', { name: /Explore All Products/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Contact Us/i })).toBeInTheDocument();
   });

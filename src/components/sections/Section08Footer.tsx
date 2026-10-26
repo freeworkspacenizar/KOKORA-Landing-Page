@@ -142,7 +142,7 @@ export const Section08Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="hover:text-coconut-lime transition-colors"
                 >
-                  WhatsApp Konsultasi
+                  {t.footer.contactWhatsApp}
                 </a>
               </li>
               <li>
@@ -163,7 +163,7 @@ export const Section08Footer: React.FC = () => {
               {t.footer.colSocial}
             </h4>
             <p className="text-xs text-coconut-cream/70 font-light leading-relaxed">
-              Diproduksi dengan prinsip keberlanjutan dan kemitraan adil bersama petani kelapa Indonesia.
+              {t.footer.socialDisclaimer}
             </p>
           </div>
         </div>

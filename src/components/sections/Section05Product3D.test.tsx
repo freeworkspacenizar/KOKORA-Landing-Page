@@ -52,5 +52,8 @@ describe('Section 05 Product in 3D Studio', () => {
     expect(screen.getByText(/INTERACTIVE 3D STUDIO/i)).toBeInTheDocument();
     expect(screen.getByText(/Cold-Pressed Extraction/i)).toBeInTheDocument();
     expect(screen.getByText(/Pharmaceutical Amber Glass/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Reset View/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Auto Rotate 360°/i })).toBeInTheDocument();
+    expect(screen.getByText(/Selected Size:/i)).toBeInTheDocument();
   });
 });

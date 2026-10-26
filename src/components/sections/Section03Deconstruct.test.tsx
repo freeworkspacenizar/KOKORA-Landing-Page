@@ -41,7 +41,13 @@ describe('Section 03 The Coconut Deconstructed', () => {
     const enBtn = screen.getByRole('button', { name: /English/i });
     fireEvent.click(enBtn);
 
+    expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(/ONE COCONUT\.\s*SO MANY STORIES\./i);
+    expect(screen.getAllByText(/OUTER HUSK & DEW/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/CARVED COCONUT SHELL/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/TENDER COCONUT MEAT/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/PURE ISOTONIC WATER/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/Vibrant Green Exocarp/i).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/Silky Soft Endosperm/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/Scroll slowly to deconstruct and reassemble the coconut anatomy/i)).toBeInTheDocument();
   });
 });

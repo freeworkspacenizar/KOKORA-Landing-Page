@@ -45,32 +45,33 @@ export const localeEN: LocaleDictionary = {
   },
   deconstruct: {
     badge: 'Coconut Anatomy',
-    title: 'ONE COCONUT. BEGITU BANYAK CERITA.', // Includes Indonesian test token for backward test assertion while providing English context
+    title: 'ONE COCONUT. SO MANY STORIES.',
     subtitle: 'Scroll gently to deconstruct each layer of Indonesia’s iconic young coconut.',
+    scrollCue: 'Scroll slowly to deconstruct and reassemble the coconut anatomy',
     cards: [
       {
         id: 'kulit-luar',
-        label: 'KULIT LUAR & EMBUN',
+        label: 'OUTER HUSK & DEW',
         sublabel: 'Vibrant Green Exocarp',
-        description: 'Serabut pelindung tangguh with fresh green outer skin and chilled morning dew droplets, shielding botanical vitality.',
+        description: 'Resilient protective husk adorned with crisp morning dew, sealing within the vital tropical essence of the living coconut.',
       },
       {
         id: 'tempurung',
-        label: 'TEMPURUNG & PANGKASAN',
+        label: 'CARVED COCONUT SHELL',
         sublabel: 'Artisanal Machete Trim',
-        description: 'Cangkang keras pelindung inti and tender fibrous husk trimmed with traditional precision to reveal natural refreshment.',
+        description: 'Dense inner protective stone shell carefully pared by skilled archipelagic artisans to unveil the pristine reservoir inside.',
       },
       {
         id: 'daging-kelapa',
-        label: 'DAGING KELAPA MUDA',
+        label: 'TENDER COCONUT MEAT',
         sublabel: 'Silky Soft Endosperm',
-        description: 'Lapisan endosperma putih tender white meat brimming with nourishing lauric acid and delicate tropical sweetness.',
+        description: 'Silken, cloud-soft interior meat rich in lauric acid and plant lipids, offering tender indulgence with delicate tropical sweetness.',
       },
       {
         id: 'air-kelapa',
-        label: 'AIR KELAPA ISOTONIK',
+        label: 'PURE ISOTONIC WATER',
         sublabel: 'Pure Liquid Endosperm',
-        description: 'Cairan isotonik alami kaya nutrisi and essential electrolytes straight from the palm canopy for instant cellular hydration.',
+        description: 'Pure, untouched isotonic nectar brimming with bioavailable electrolytes and potassium for instant natural cellular revitalization.',
       },
     ],
   },
@@ -85,6 +86,7 @@ export const localeEN: LocaleDictionary = {
         id: 'vco-cold-pressed',
         name: 'Virgin Coconut Oil (VCO) Cold-Pressed',
         tagline: 'Purity of First Cold Extraction',
+        badge: 'Flagship Product',
         category: 'Pure Wellness & Care',
         description: 'Pure virgin coconut oil cold-pressed without chemicals or heat. Retains high concentrations of natural lauric acid to nourish skin, hair, and daily cellular vitality.',
         specs: [
@@ -98,6 +100,7 @@ export const localeEN: LocaleDictionary = {
         id: 'raw-coconut-water',
         name: 'Raw Organic Coconut Water',
         tagline: 'Natural Electrolyte Hydration',
+        badge: 'Natural Hydration',
         category: 'Natural Hydration',
         description: 'Micro-filtered pure young coconut water captured immediately upon harvest. Packed with bioavailable electrolytes like potassium and magnesium for deep revitalization.',
         specs: [
@@ -111,6 +114,7 @@ export const localeEN: LocaleDictionary = {
         id: 'artisan-coconut-sugar',
         name: 'Artisan Granulated Coconut Sugar',
         tagline: 'Caramel-Kissed Natural Sweetener',
+        badge: 'Natural Sweetener',
         category: 'Clean Nutrition & Culinary',
         description: 'Granulated coconut blossom sugar crafted from fresh palm nectar by archipelago artisans, featuring a low glycemic index and gentle caramel undertones.',
         specs: [
@@ -124,6 +128,7 @@ export const localeEN: LocaleDictionary = {
         id: 'eco-charcoal-briquettes',
         name: 'Eco-Friendly Coconut Shell Charcoal',
         tagline: 'Clean Energy from Natural Upcycling',
+        badge: 'Clean Energy',
         category: 'Circular Energy & Sustainability',
         description: 'Sustainable charcoal briquettes made from reclaimed coconut shells offering intense sustained heat, smokeless burn, and zero toxic chemical binders.',
         specs: [
@@ -143,6 +148,10 @@ export const localeEN: LocaleDictionary = {
     viewDetails: 'Specifications & Provenance',
     rotateNotice: 'Drag to inspect 360°',
     orderWhatsApp: 'Order This Size via WhatsApp',
+    resetView: 'Reset View',
+    autoRotate: 'Auto Rotate 360°',
+    pauseRotate: 'Pause',
+    selectedVariantPrefix: 'Selected Size',
     hotspots: {
       coldPressed: {
         id: 'cold-pressed',
@@ -191,7 +200,7 @@ export const localeEN: LocaleDictionary = {
   },
   conversion: {
     eyebrow: 'Next Steps',
-    headline: 'SIAP MENJELAJAHI DUNIA KELAPA?',
+    headline: 'READY TO EXPERIENCE PURE COCONUT?',
     supporting: 'Discover KOKORA essentials and choose what resonates with your lifestyle. From natural hydration to botanical wellness and circular energy.',
     catalogCta: 'Explore All Products',
     contactCta: 'Contact Us',
@@ -206,6 +215,8 @@ export const localeEN: LocaleDictionary = {
     colCatalog: 'Catalog',
     colContact: 'Contact & Atelier',
     colSocial: 'Social Presence',
+    contactWhatsApp: 'WhatsApp Consultation',
+    socialDisclaimer: 'Handcrafted with sustainable principles and ethical fair-trade partnerships with Indonesian coconut growers.',
     linkHome: 'Home',
     linkStory: 'Our Story',
     linkDeconstruct: '3D Deconstruction',

@@ -16,6 +16,7 @@ describe('Section 04 Product Showcase', () => {
     expect(screen.getByText(/Raw Organic Coconut Water/i)).toBeInTheDocument();
     expect(screen.getByText(/Artisan Granulated Coconut Sugar/i)).toBeInTheDocument();
     expect(screen.getByText(/Eco-Friendly Coconut Shell Charcoal/i)).toBeInTheDocument();
+    expect(screen.getByText(/Produk Unggulan/i)).toBeInTheDocument();
   });
 
   it('provides "Inspeksi 3D" link on the flagship VCO product', () => {
@@ -41,5 +42,6 @@ describe('Section 04 Product Showcase', () => {
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(/FROM THE PALM TO YOUR DAILY CHOICE\./i);
     expect(screen.getByRole('link', { name: /3D Inspection/i })).toHaveAttribute('href', '#studio-3d');
     expect(screen.getAllByText(/Order via WhatsApp/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/Flagship Product/i)).toBeInTheDocument();
   });
 });

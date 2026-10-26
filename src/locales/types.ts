@@ -46,6 +46,7 @@ export interface DeconstructLocale {
   badge: string;
   title: string;
   subtitle: string;
+  scrollCue: string;
   cards: AnatomyCardLocale[];
 }
 
@@ -53,6 +54,7 @@ export interface ProductItemLocale {
   id: string;
   name: string;
   tagline: string;
+  badge?: string;
   category: string;
   description: string;
   specs: string[];
@@ -82,6 +84,10 @@ export interface Studio3DLocale {
   viewDetails: string;
   rotateNotice: string;
   orderWhatsApp: string;
+  resetView: string;
+  autoRotate: string;
+  pauseRotate: string;
+  selectedVariantPrefix: string;
   hotspots: Record<string, StudioHotspotLocale>;
 }
 
@@ -117,6 +123,8 @@ export interface FooterLocale {
   colCatalog: string;
   colContact: string;
   colSocial: string;
+  contactWhatsApp: string;
+  socialDisclaimer: string;
   linkHome: string;
   linkStory: string;
   linkDeconstruct: string;

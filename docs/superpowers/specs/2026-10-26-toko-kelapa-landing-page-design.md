@@ -1,7 +1,7 @@
-# Design Document — Toko Kelapa Immersive 3D Landing Page
+# Design Document — KOKORA Immersive 3D Landing Page
 
 **Date:** 2026-10-26  
-**Topic:** Toko Kelapa — Immersive 3D Landing Page (Tropical Modernism meets 3D Storytelling)  
+**Topic:** KOKORA — Immersive 3D Landing Page (Tropical Modernism meets 3D Storytelling)  
 **Status:** Approved & Ready for Implementation Plan  
 **Language:** Bahasa Indonesia (Copy & Content) / English & Indonesian (Technical Specs)
 
@@ -9,7 +9,7 @@
 
 ## 1. Intent & The Why
 
-Toko Kelapa adalah representasi pengalaman digital berstandar internasional (*Awwwards-quality*) yang mengangkat komoditas kelapa Indonesia ke tingkat kemewahan modern (*Tropical Modernism*). Situs ini mentransformasikan buah kelapa dari sekadar bahan baku menjadi karakter tiga dimensi interaktif yang memandu pengunjung memahami nilai alami, proses, hingga produk jadinya.
+KOKORA adalah representasi pengalaman digital berstandar internasional (*Awwwards-quality*) yang mengangkat komoditas kelapa Indonesia ke tingkat kemewahan modern (*Tropical Modernism*). Situs ini mentransformasikan buah kelapa dari sekadar bahan baku menjadi karakter tiga dimensi interaktif yang memandu pengunjung memahami nilai alami, proses, hingga produk jadinya.
 
 Tujuan utama:
 - Membangun *brand awareness* dan persepsi premium.
@@ -99,7 +99,7 @@ src/
 │       ├── Section05Product3D.tsx   # Studio 3D inspeksi kemasan produk
 │       ├── Section06Lifestyle.tsx   # Komposisi visual editorial dunia kelapa alami
 │       ├── Section07Conversion.tsx  # Call to Action konversi dengan tombol terverifikasi
-│       └── Section08Footer.tsx      # Editorial footer lengkap dengan signature Toko Kelapa
+│       └── Section08Footer.tsx      # Editorial footer lengkap dengan signature KOKORA
 ├── hooks/
 │   ├── useScrollAnimation.ts        # Hook manajemen timeline ScrollTrigger
 │   └── usePrefersReducedMotion.ts   # Deteksi preferensi aksesibilitas
@@ -180,13 +180,13 @@ src/
 ### Seksi 06 — Lifestyle & Brand World
 - **Latar:** *Coconut Cream* (`#F5F0E5`).
 - **Headline:** `"BAWA NUANSA ALAMI KE KESEHARIANMU."`
-- **Subheadline:** `"Temukan bagaimana produk Toko Kelapa dapat menjadi bagian dari keseharianmu."`
+- **Subheadline:** `"Temukan bagaimana produk KOKORA dapat menjadi bagian dari keseharianmu."`
 - **Visual:** Komposisi editorial fotografi bernuansa tropis alami, sinar matahari hangat, dan tekstur organik.
 
 ### Seksi 07 — Conversion Call to Action
 - **Latar:** *Deep Coconut Green* dengan aksen *Young Coconut Lime* (`#B9D957`).
 - **Headline:** `"SIAP MENJELAJAHI DUNIA KELAPA?"`
-- **Subheadline:** `"Temukan produk Toko Kelapa dan pilih yang paling sesuai untukmu."`
+- **Subheadline:** `"Temukan produk KOKORA dan pilih yang paling sesuai untukmu."`
 - **Tombol Aksi:**
   - Utama: `"Lihat Semua Produk"` (menghubungkan ke katalog lengkap / WhatsApp pemesanan).
   - Sekunder: `"Hubungi Kami"` (menghubungkan ke saluran kontak langsung).
@@ -194,7 +194,7 @@ src/
 ### Seksi 08 — Editorial Footer
 - **Latar:** *Deep Coconut Green* (`#0D241C` / `#173F32`) dengan tipografi krem.
 - **Elemen:**
-  - Logo & Pernyataan Merek Toko Kelapa.
+  - Logo & Pernyataan Merek KOKORA.
   - Signature: `"BUKAN SEKADAR KELAPA. INI CARA KAMI MELIHATNYA."`
   - Navigasi Cepat (Hero, Cerita, Dekonstruksi, Produk, Kontak).
   - Tautan media sosial terverifikasi dan hak cipta.

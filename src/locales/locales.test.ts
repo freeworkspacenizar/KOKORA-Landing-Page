@@ -43,7 +43,17 @@ describe('Locale Dictionary - English (EN)', () => {
     expect(Object.keys(localeEN.manifesto)).toEqual(Object.keys(localeID.manifesto));
     expect(Object.keys(localeEN.deconstruct)).toEqual(Object.keys(localeID.deconstruct));
     expect(Object.keys(localeEN.products.items)).toEqual(Object.keys(localeID.products.items));
+    expect(Object.keys(localeEN.studio3d)).toEqual(Object.keys(localeID.studio3d));
     expect(Object.keys(localeEN.studio3d.hotspots)).toEqual(Object.keys(localeID.studio3d.hotspots));
+    expect(Object.keys(localeEN.footer)).toEqual(Object.keys(localeID.footer));
+
+    // Verify critical English translations
+    expect(localeEN.conversion.headline).toBe('READY TO EXPERIENCE PURE COCONUT?');
+    expect(localeEN.deconstruct.title).toBe('ONE COCONUT. SO MANY STORIES.');
+    expect(localeEN.deconstruct.scrollCue).toBe('Scroll slowly to deconstruct and reassemble the coconut anatomy');
+    expect(localeEN.studio3d.resetView).toBe('Reset View');
+    expect(localeEN.studio3d.autoRotate).toBe('Auto Rotate 360°');
+    expect(localeEN.footer.contactWhatsApp).toBe('WhatsApp Consultation');
   });
 });
 

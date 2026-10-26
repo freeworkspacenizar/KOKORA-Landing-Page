@@ -6,7 +6,7 @@ interface FallbackPosterProps {
 }
 
 export const FallbackPoster: React.FC<FallbackPosterProps> = ({
-  title = 'Kelapa Muda Alami Toko Kelapa',
+  title = 'Kelapa Muda Alami KOKORA',
   className = '',
 }) => {
   return (
@@ -115,7 +115,7 @@ export const FallbackPoster: React.FC<FallbackPosterProps> = ({
 
       <div className="mt-4 text-center z-10">
         <span className="text-xs uppercase tracking-widest text-coconut-lime/90 font-medium">
-          Toko Kelapa Visual Signature
+          KOKORA Visual Signature
         </span>
         <p className="text-sm text-coconut-cream/70 mt-1 max-w-xs">
           Kelapa muda segar nusantara: kulit hijau segar, sabut pangkasan alami, daging kelapa lembut, dan air isotonik murni.

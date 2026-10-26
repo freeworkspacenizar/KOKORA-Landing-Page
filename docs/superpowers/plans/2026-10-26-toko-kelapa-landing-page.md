@@ -1,8 +1,8 @@
-# Toko Kelapa Immersive 3D Landing Page Implementation Plan
+# KOKORA Immersive 3D Landing Page Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build a premium, Awwwards-caliber interactive 3D landing page for Toko Kelapa in Bahasa Indonesia, combining Tropical Modernism with scroll-driven WebGL storytelling (Hero 3D, Manifesto, Coconut Deconstruction, Product Catalog, 3D Product Studio, Lifestyle, Conversion, and Footer).
+**Goal:** Build a premium, Awwwards-caliber interactive 3D landing page for KOKORA in Bahasa Indonesia, combining Tropical Modernism with scroll-driven WebGL storytelling (Hero 3D, Manifesto, Coconut Deconstruction, Product Catalog, 3D Product Studio, Lifestyle, Conversion, and Footer).
 
 **Architecture:** Single Page Application (SPA) built on Vite, React 19, TypeScript, and Tailwind CSS. The 3D engine uses React Three Fiber and Three.js with custom procedural PBR materials and lighting. Smooth scrolling is orchestrated via a single Lenis engine bound to GSAP ScrollTrigger's ticker, with full support for `prefers-reduced-motion` and no-WebGL fallbacks.
 
@@ -57,7 +57,7 @@ import { describe, it, expect } from 'vitest';
 import App from './App';
 
 describe('App Root Scaffolding', () => {
-  it('renders Toko Kelapa root layout without error', () => {
+  it('renders KOKORA root layout without error', () => {
     render(<App />);
     expect(screen.getByRole('main')).toBeInTheDocument();
   });
@@ -234,10 +234,10 @@ import { FallbackPoster } from './FallbackPoster';
 describe('3D Fallback Poster', () => {
   it('renders accessible poster image and description when WebGL is unavailable', () => {
     const { getByRole, getByAltText } = render(
-      <FallbackPoster title="Kelapa Alami Toko Kelapa" />
+      <FallbackPoster title="Kelapa Alami KOKORA" />
     );
     expect(getByRole('img')).toBeInTheDocument();
-    expect(getByAltText(/Kelapa Alami Toko Kelapa/i)).toBeInTheDocument();
+    expect(getByAltText(/Kelapa Alami KOKORA/i)).toBeInTheDocument();
   });
 });
 ```
@@ -298,7 +298,7 @@ Run: `npx vitest run src/components/sections/Section01Hero.test.tsx`
 Expected: FAIL
 
 - [ ] **Step 3: Implement `Navigation.tsx`, `Button.tsx`, and `Section01Hero.tsx`**
-- `Navigation`: Toko Kelapa brand logo, quick navigation links (`Cerita`, `Dekonstruksi`, `Produk`, `Studio 3D`), backdrop blur, CTA `"Hubungi Kami"`.
+- `Navigation`: KOKORA brand logo, quick navigation links (`Cerita`, `Dekonstruksi`, `Produk`, `Studio 3D`), backdrop blur, CTA `"Hubungi Kami"`.
 - `Section01Hero`:
   - Canvas with interactive 3D coconut (slow idle rotation, pointer-responsive yaw/pitch, drag-to-rotate with damping).
   - Editorial typography overlay: Eyebrow, headline with staggered GSAP reveal, supporting copy.
@@ -504,7 +504,7 @@ Expected: FAIL
   - Transparent glass cylinder with curved shoulder, refractive material (`transmission: 0.95`, `roughness: 0.05`).
   - Warm golden liquid cylinder inside.
   - Wooden cap cylinder on top.
-  - Minimalist embossed Toko Kelapa label mesh.
+  - Minimalist embossed KOKORA label mesh.
   - Smooth scale transition when switching between 250ml and 500ml variants.
 - `HotspotPin`: Screen-space overlay pins anchored to 3D positions with animated ping ring and expandable detail panel.
 - Controls: Drag to rotate 360°, Reset View button, and Direct Order CTA.
@@ -548,7 +548,7 @@ Expected: FAIL
 - [ ] **Step 3: Implement `Section06Lifestyle.tsx`**
 - Background: Coconut Cream (`#F5F0E5`).
 - Headline: `"BAWA NUANSA ALAMI KE KESEHARIANMU."`
-- Subcopy: `"Temukan bagaimana produk Toko Kelapa dapat menjadi bagian dari keseharianmu."`
+- Subcopy: `"Temukan bagaimana produk KOKORA dapat menjadi bagian dari keseharianmu."`
 - Editorial lifestyle grid with authentic tropical modernism imagery, soft sunlight vignettes, tactile texture descriptions, and ethical sourcing narrative without medical overclaims.
 
 - [ ] **Step 4: Run test to verify it passes**
@@ -595,12 +595,12 @@ Expected: FAIL
 - `Section07Conversion`:
   - Deep Green background with vibrant Young Coconut Lime accents.
   - Headline: `"SIAP MENJELAJAHI DUNIA KELAPA?"`
-  - Subcopy: `"Temukan produk Toko Kelapa dan pilih yang paling sesuai untukmu."`
+  - Subcopy: `"Temukan produk KOKORA dan pilih yang paling sesuai untukmu."`
   - Primary CTA `"Lihat Semua Produk"` (scrolls to catalog).
   - Secondary CTA `"Hubungi Kami"` (verified direct contact link).
 - `Section08Footer`:
   - Deep Coconut Green (`#0D241C`) with cream typography.
-  - Toko Kelapa logo and brand statement.
+  - KOKORA logo and brand statement.
   - Signature line: `"BUKAN SEKADAR KELAPA. INI CARA KAMI MELIHATNYA."`
   - Clean semantic navigation, social links, and copyright statement.
 
@@ -618,7 +618,7 @@ Expected: PASS
 
 **Interfaces:**
 - Consumes: All 8 sections, `SmoothScrollProvider`, `Navigation`
-- Produces: Full production-ready Toko Kelapa application.
+- Produces: Full production-ready KOKORA application.
 
 - [ ] **Step 1: Update `src/App.tsx` to assemble all sections into full narrative**
 - Wrap with `<SmoothScrollProvider>`.

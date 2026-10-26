@@ -137,27 +137,27 @@ export const Section05Product3D: React.FC = () => {
             type="button"
             onClick={handleResetView}
             className="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-coconut-dark/80 hover:bg-coconut-dark text-coconut-cream/80 hover:text-white border border-coconut-cream/15 backdrop-blur-md text-xs font-medium transition-colors"
-            title="Reset Sudut Pandang"
+            title={t.studio3d.resetView}
           >
             <RotateCcw size={13} />
-            <span>Reset Sudut</span>
+            <span>{t.studio3d.resetView}</span>
           </button>
 
           <button
             type="button"
             onClick={() => setIsRotating(!isRotating)}
             className="flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-coconut-dark/80 hover:bg-coconut-dark text-coconut-cream/80 hover:text-white border border-coconut-cream/15 backdrop-blur-md text-xs font-medium transition-colors"
-            title={isRotating ? 'Hentikan Putaran' : 'Putar Otomatis'}
+            title={isRotating ? t.studio3d.pauseRotate : t.studio3d.autoRotate}
           >
             {isRotating ? <Pause size={13} /> : <Play size={13} />}
-            <span>{isRotating ? 'Jeda' : 'Putar 360°'}</span>
+            <span>{isRotating ? t.studio3d.pauseRotate : t.studio3d.autoRotate}</span>
           </button>
         </div>
 
         {/* Price & Current Spec Badge */}
         <div className="absolute top-6 right-6 z-20 text-right">
           <div className="text-xs uppercase tracking-wider text-coconut-lime font-mono">
-            Varian Terpilih: {selectedVariant.volume}
+            {t.studio3d.selectedVariantPrefix}: {selectedVariant.volume}
           </div>
           <div className="text-xl font-display font-bold text-coconut-cream">
             {selectedVariant.pricePlaceholder}
