@@ -20,7 +20,7 @@ Object.defineProperty(window, 'matchMedia', {
 window.scrollTo = vi.fn();
 
 // Mock ResizeObserver for R3F Canvas
-global.ResizeObserver = class ResizeObserver {
+(globalThis as unknown as { ResizeObserver: unknown }).ResizeObserver = class ResizeObserver {
   observe = vi.fn();
   unobserve = vi.fn();
   disconnect = vi.fn();

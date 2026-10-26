@@ -1,29 +1,45 @@
 import React from 'react';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface BaseButtonProps {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
-  asLink?: boolean;
-  href?: string;
   children: React.ReactNode;
+  className?: string;
 }
 
-export const Button: React.FC<ButtonProps> = ({
-  variant = 'primary',
-  size = 'md',
-  asLink = false,
-  href = '#',
-  children,
-  className = '',
-  ...props
-}) => {
-  const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coconut-lime focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none rounded-full cursor-pointer tracking-wide';
+type ButtonAsButton = BaseButtonProps &
+  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof BaseButtonProps> & {
+    asLink?: false;
+    href?: never;
+  };
+
+type ButtonAsLink = BaseButtonProps &
+  Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof BaseButtonProps> & {
+    asLink: true;
+    href: string;
+  };
+
+export type ButtonProps = ButtonAsButton | ButtonAsLink;
+
+export const Button: React.FC<ButtonProps> = (props) => {
+  const {
+    variant = 'primary',
+    size = 'md',
+    children,
+    className = '',
+  } = props;
+
+  const baseStyles =
+    'inline-flex items-center justify-center font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coconut-lime focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none rounded-full cursor-pointer tracking-wide';
 
   const variants = {
-    primary: 'bg-coconut-lime text-coconut-dark hover:bg-[#c9ea6b] active:scale-95 shadow-lg shadow-coconut-lime/10',
+    primary:
+      'bg-coconut-lime text-coconut-dark hover:bg-[#c9ea6b] active:scale-95 shadow-lg shadow-coconut-lime/10',
     secondary: 'bg-coconut-cream text-coconut-dark hover:bg-white active:scale-95',
-    outline: 'border border-coconut-cream/30 text-coconut-cream hover:border-coconut-cream hover:bg-coconut-cream/10 active:scale-95',
-    ghost: 'text-coconut-cream/80 hover:text-coconut-cream hover:bg-coconut-cream/5 active:scale-95',
+    outline:
+      'border border-coconut-cream/30 text-coconut-cream hover:border-coconut-cream hover:bg-coconut-cream/10 active:scale-95',
+    ghost:
+      'text-coconut-cream/80 hover:text-coconut-cream hover:bg-coconut-cream/5 active:scale-95',
   };
 
   const sizes = {
@@ -34,16 +50,18 @@ export const Button: React.FC<ButtonProps> = ({
 
   const combinedClasses = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
 
-  if (asLink) {
+  if (props.asLink) {
+    const { asLink: _asLink, ...anchorProps } = props;
     return (
-      <a href={href} className={combinedClasses} role="link">
+      <a className={combinedClasses} role="link" {...anchorProps}>
         {children}
       </a>
     );
   }
 
+  const { asLink: _asLink, href: _href, ...buttonProps } = props;
   return (
-    <button className={combinedClasses} {...props}>
+    <button className={combinedClasses} {...buttonProps}>
       {children}
     </button>
   );

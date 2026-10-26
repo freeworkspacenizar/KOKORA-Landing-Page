@@ -6,7 +6,7 @@ export const Section02Manifesto: React.FC = () => {
   const manifestoText = "Setiap kelapa punya cerita. Kami ingin menghadirkannya dengan cara yang lebih dekat, lebih relevan, dan lebih menarik untuk keseharian.";
   const words = manifestoText.split(' ');
 
-  const sectionRef = useScrollAnimation<HTMLElement>(({ el, gsap, ScrollTrigger }) => {
+  const sectionRef = useScrollAnimation<HTMLElement>(({ el, gsap }) => {
     // Reveal words on scroll
     const wordElements = el.querySelectorAll('.manifesto-word');
     if (wordElements.length > 0) {
