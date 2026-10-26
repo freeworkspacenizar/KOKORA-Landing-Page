@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import App from './App';
 
@@ -6,9 +6,9 @@ describe('App Root Scaffolding & Narrative Assembly', () => {
   it('renders all 8 sections and navigation in complete narrative flow', () => {
     render(<App />);
     expect(screen.getByRole('main')).toBeInTheDocument();
-    
+
     // Navigation
-    expect(screen.getByLabelText(/Toko Kelapa Homepage/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/KOKORA Homepage/i)).toBeInTheDocument();
 
     // Section 01: Hero
     expect(screen.getByText(/DARI ALAM, UNTUK KESEHARIAN/i)).toBeInTheDocument();
@@ -33,5 +33,23 @@ describe('App Root Scaffolding & Narrative Assembly', () => {
 
     // Section 08: Footer
     expect(screen.getByText(/BUKAN SEKADAR KELAPA\. INI CARA KAMI MELIHATNYA\./i)).toBeInTheDocument();
+  });
+
+  it('switches full site language seamlessly when clicking EN button', () => {
+    render(<App />);
+    const enBtns = screen.getAllByRole('button', { name: /English/i });
+    fireEvent.click(enBtns[0]);
+
+    // Hero in English
+    expect(screen.getByText(/FROM NATURE, FOR EVERYDAY LIFE/i)).toBeInTheDocument();
+
+    // Manifesto in English
+    expect(screen.getByText(/MORE THAN JUST A COCONUT\./i)).toBeInTheDocument();
+
+    // 3D Studio in English
+    expect(screen.getByText(/INTERACTIVE 3D STUDIO/i)).toBeInTheDocument();
+
+    // Footer in English
+    expect(screen.getByText(/NOT JUST A COCONUT\. THIS IS HOW WE SEE IT\./i)).toBeInTheDocument();
   });
 });

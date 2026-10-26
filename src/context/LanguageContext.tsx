@@ -2,7 +2,6 @@ import React, { createContext, useContext, useState, useEffect, useMemo, useCall
 import { LocaleDictionary } from '../locales/types';
 import { localeID } from '../locales/id';
 import { localeEN } from '../locales/en';
-import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export type Locale = 'id' | 'en';
