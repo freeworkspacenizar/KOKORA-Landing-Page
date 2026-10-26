@@ -16,6 +16,18 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 });
 
+// JSDOM scrollTo mock
+window.scrollTo = vi.fn();
+
+// JSDOM requestAnimationFrame mocks
+const rafMock = (cb: FrameRequestCallback) => setTimeout(cb, 16) as unknown as number;
+const cafMock = (id: number) => clearTimeout(id);
+
+window.requestAnimationFrame = rafMock;
+window.cancelAnimationFrame = cafMock;
+global.requestAnimationFrame = rafMock;
+global.cancelAnimationFrame = cafMock;
+
 // JSDOM ResizeObserver mock for R3F Canvas
 global.ResizeObserver = class ResizeObserver {
   observe = vi.fn();
