@@ -1,8 +1,11 @@
 import React from 'react';
 import { PRODUCTS } from '../../data/products';
 import { ProductCard } from '../ui/ProductCard';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const Section04Products: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section
       id="katalog"
@@ -12,13 +15,13 @@ export const Section04Products: React.FC = () => {
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-coconut-husk/10 border border-coconut-husk/20 text-coconut-husk text-xs font-semibold uppercase tracking-widest mb-4">
-            Katalog Produk Olahan
+            {t.products.badge}
           </div>
           <h2 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-coconut-dark leading-[1.08] mb-4">
-            DARI KELAPA, MENJADI PILIHANMU.
+            {t.products.title}
           </h2>
           <p className="text-base sm:text-lg text-coconut-dark/75 font-light leading-relaxed">
-            Temukan produk yang sesuai dengan kebutuhanmu. Seluruh olahan dihasilkan dengan standar mutu tinggi dan integritas bahan baku nusantara.
+            {t.products.subtitle}
           </p>
         </div>
 

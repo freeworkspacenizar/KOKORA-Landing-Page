@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 import { useInView } from '../../hooks/useInView';
+import { useLanguage } from '../../context/LanguageContext';
 import { DeconstructedCanvas } from '../3d/DeconstructedCanvas';
 import { FallbackPoster } from '../3d/FallbackPoster';
 
@@ -18,41 +19,35 @@ export const Section03Deconstruct: React.FC = () => {
   const prefersReduced = usePrefersReducedMotion();
   const [explodeProgress, setExplodeProgress] = useState(0);
   const [activeTab, setActiveTab] = useState('kulit-luar');
+  const { t } = useLanguage();
 
-  const anatomyParts: AnatomyPart[] = [
-    {
-      id: 'kulit-luar',
-      label: 'KULIT LUAR & EMBUN',
-      sublabel: 'Exocarp Hijau Segar',
-      description: 'Serabut pelindung tangguh dengan kulit hijau segar berlapis bulir embun dingin, menjaga kemurnian kelapa muda nusantara.',
+  const cardConfig: Record<string, { positionClass: string; badgeColor: string }> = {
+    'kulit-luar': {
       positionClass: 'top-[22%] left-4 md:left-12 lg:left-20',
       badgeColor: 'border-coconut-lime text-coconut-lime',
     },
-    {
-      id: 'tempurung',
-      label: 'TEMPURUNG & PANGKASAN',
-      sublabel: 'Endocarp & Mesocarp Trim',
-      description: 'Cangkang keras pelindung inti kelapa muda yang dipangkas presisi secara tradisional untuk membuka rongga kesegaran.',
+    'tempurung': {
       positionClass: 'top-[18%] right-4 md:right-12 lg:right-24',
       badgeColor: 'border-[#DFCFAF] text-[#DFCFAF]',
     },
-    {
-      id: 'daging-kelapa',
-      label: 'DAGING KELAPA MUDA',
-      sublabel: 'Soft Endosperm Meat',
-      description: 'Lapisan endosperma putih lembut kaya nutrisi dan asam laurat, bertekstur kenyal segar yang mudah dikeruk.',
+    'daging-kelapa': {
       positionClass: 'bottom-[22%] left-4 md:left-16 lg:left-28',
       badgeColor: 'border-coconut-cream text-coconut-cream',
     },
-    {
-      id: 'air-kelapa',
-      label: 'AIR KELAPA ISOTONIK',
-      sublabel: 'Liquid Endosperm',
-      description: 'Cairan isotonik alami kaya nutrisi dan elektrolit penyegar untuk hidrasi optimal tubuh langsung dari pohonnya.',
+    'air-kelapa': {
       positionClass: 'bottom-[18%] right-4 md:right-16 lg:right-24',
       badgeColor: 'border-coconut-lime text-coconut-lime',
     },
-  ];
+  };
+
+  const anatomyParts: AnatomyPart[] = t.deconstruct.cards.map((card) => ({
+    id: card.id,
+    label: card.label,
+    sublabel: card.sublabel,
+    description: card.description,
+    positionClass: cardConfig[card.id]?.positionClass || '',
+    badgeColor: cardConfig[card.id]?.badgeColor || 'border-coconut-lime text-coconut-lime',
+  }));
 
   const sectionRef = useScrollAnimation<HTMLElement>(({ el, gsap }) => {
     if (prefersReduced) return;
@@ -98,14 +93,13 @@ export const Section03Deconstruct: React.FC = () => {
       {/* Top Header */}
       <div className="relative z-20 max-w-7xl mx-auto w-full text-center">
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-coconut-cream/10 border border-coconut-cream/15 text-coconut-lime text-xs font-semibold uppercase tracking-widest mb-4">
-          Eksplorasi Tiga Dimensi
+          {t.deconstruct.badge}
         </div>
         <h2 className="font-display text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-coconut-cream">
-          SATU KELAPA.<br />
-          <span className="text-coconut-lime">BEGITU BANYAK CERITA.</span>
+          {t.deconstruct.title}
         </h2>
         <p className="text-sm sm:text-base text-coconut-cream/70 mt-3 max-w-xl mx-auto font-light">
-          Jelajahi lapisan, tekstur, dan karakter kelapa dalam pengalaman tiga dimensi.
+          {t.deconstruct.subtitle}
         </p>
       </div>
 

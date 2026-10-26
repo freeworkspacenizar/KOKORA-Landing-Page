@@ -55,12 +55,7 @@ export interface ProductItemLocale {
   tagline: string;
   category: string;
   description: string;
-  specs: {
-    volume: string;
-    origin: string;
-    shelfLife: string;
-    extraction: string;
-  };
+  specs: string[];
 }
 
 export interface ProductsLocale {

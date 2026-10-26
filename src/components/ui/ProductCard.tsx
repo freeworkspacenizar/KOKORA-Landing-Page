@@ -3,6 +3,7 @@ import { Product } from '../../data/products';
 import { Button } from './Button';
 import { Sparkles, Box, Check, MessageSquare } from 'lucide-react';
 import { useSmoothScroll } from './SmoothScrollProvider';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface ProductCardProps {
   product: Product;
@@ -10,11 +11,19 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { scrollTo } = useSmoothScroll();
+  const { t } = useLanguage();
 
   const handleInspectClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     scrollTo('#studio-3d');
   };
+
+  const localized = t.products.items[product.id];
+  const name = localized?.name || product.name;
+  const tagline = localized?.tagline || product.tagline;
+  const category = localized?.category || product.category;
+  const description = localized?.description || product.description;
+  const specs = localized?.specs || product.specs;
 
   return (
     <div
@@ -28,7 +37,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div>
         <div className="flex items-center justify-between gap-2 mb-4">
           <span className="text-xs uppercase tracking-wider font-semibold text-coconut-husk">
-            {product.category}
+            {category}
           </span>
           {product.badge && (
             <span
@@ -59,20 +68,20 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
         {/* Title & Tagline */}
         <h3 className="font-display text-2xl font-bold text-coconut-dark mb-1">
-          {product.name}
+          {name}
         </h3>
         <p className="text-xs font-medium text-coconut-husk mb-3">
-          {product.tagline}
+          {tagline}
         </p>
 
         {/* Description */}
         <p className="text-sm text-coconut-dark/75 leading-relaxed font-light mb-6">
-          {product.description}
+          {description}
         </p>
 
         {/* Specifications List */}
         <ul className="space-y-2 mb-8 pt-4 border-t border-coconut-husk/10">
-          {product.specs.map((spec, i) => (
+          {specs.map((spec, i) => (
             <li key={i} className="flex items-start gap-2 text-xs text-coconut-dark/80 font-light">
               <Check size={14} className="text-coconut-husk mt-0.5 flex-shrink-0" />
               <span>{spec}</span>
@@ -93,7 +102,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           className="flex-1 justify-center"
         >
           <MessageSquare size={14} />
-          <span>Pesan Langsung</span>
+          <span>{t.products.orderCta}</span>
         </Button>
 
         {product.isHero && (
@@ -106,7 +115,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             className="border-coconut-dark/30 text-coconut-dark hover:bg-coconut-dark hover:text-white"
           >
             <Box size={14} />
-            <span>Inspeksi 3D</span>
+            <span>{t.products.view3dCta}</span>
           </Button>
         )}
       </div>
