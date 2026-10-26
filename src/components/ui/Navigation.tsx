@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
+import { LanguageSwitcher } from './LanguageSwitcher';
 import { Menu, X } from 'lucide-react';
 import { useSmoothScroll } from './SmoothScrollProvider';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const Navigation: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { scrollTo } = useSmoothScroll();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,11 +20,11 @@ export const Navigation: React.FC = () => {
   }, []);
 
   const navLinks = [
-    { label: 'Cerita', href: '#manifesto' },
-    { label: 'Dekonstruksi', href: '#dekonstruksi' },
-    { label: 'Katalog', href: '#katalog' },
-    { label: 'Studio 3D', href: '#studio-3d' },
-    { label: 'Lifestyle', href: '#lifestyle' },
+    { label: t.nav.cerita, href: '#manifesto' },
+    { label: t.nav.dekonstruksi, href: '#dekonstruksi' },
+    { label: t.nav.katalog, href: '#katalog' },
+    { label: t.nav.studio3d, href: '#studio-3d' },
+    { label: t.nav.lifestyle, href: '#lifestyle' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -44,18 +47,21 @@ export const Navigation: React.FC = () => {
           href="#"
           onClick={(e) => handleNavClick(e, '#')}
           className="group flex items-center gap-2.5 text-coconut-cream"
-          aria-label="Toko Kelapa Homepage"
+          aria-label="KOKORA Homepage"
         >
           <span className="w-8 h-8 rounded-full bg-coconut-lime flex items-center justify-center text-coconut-dark font-bold text-lg group-hover:scale-105 transition-transform">
             🥥
           </span>
           <span className="font-display font-bold tracking-wider text-xl uppercase text-coconut-cream">
-            Toko Kelapa
+            KOKORA
           </span>
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8 text-sm tracking-wide text-coconut-cream/80" aria-label="Navigasi Utama">
+        <nav
+          className="hidden md:flex items-center gap-8 text-sm tracking-wide text-coconut-cream/80"
+          aria-label="Navigasi Utama"
+        >
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -68,8 +74,10 @@ export const Navigation: React.FC = () => {
           ))}
         </nav>
 
-        {/* Right CTA */}
+        {/* Right CTA & Language Switcher */}
         <div className="hidden md:flex items-center gap-4">
+          <LanguageSwitcher />
+
           <Button
             asLink
             href="#kontak"
@@ -77,20 +85,24 @@ export const Navigation: React.FC = () => {
             size="sm"
             onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleNavClick(e, '#kontak')}
           >
-            Hubungi Kami
+            {t.nav.hubungiKami}
           </Button>
         </div>
 
         {/* Mobile Hamburger Toggle */}
-        <button
-          type="button"
-          className="md:hidden p-2 text-coconut-cream/90 hover:text-coconut-lime transition-colors focus:outline-none"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-expanded={mobileMenuOpen}
-          aria-label="Buka Menu Navigasi"
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="md:hidden flex items-center gap-3">
+          <LanguageSwitcher />
+
+          <button
+            type="button"
+            className="p-2 text-coconut-cream/90 hover:text-coconut-lime transition-colors focus:outline-none"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-expanded={mobileMenuOpen}
+            aria-label={t.nav.menuAria}
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Drawer Menu */}
@@ -106,6 +118,7 @@ export const Navigation: React.FC = () => {
               {link.label}
             </a>
           ))}
+
           <Button
             asLink
             href="#kontak"
@@ -114,7 +127,7 @@ export const Navigation: React.FC = () => {
             className="w-full mt-2"
             onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleNavClick(e, '#kontak')}
           >
-            Hubungi Kami
+            {t.nav.hubungiKami}
           </Button>
         </div>
       )}
