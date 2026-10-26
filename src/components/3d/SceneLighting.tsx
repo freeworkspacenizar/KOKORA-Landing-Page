@@ -29,6 +29,14 @@ export const SceneLighting: React.FC = () => {
         penumbra={0.8}
       />
 
+      {/* Direct Sun Glisten on Water Pool & Ice */}
+      <pointLight
+        position={[0.8, 3.2, 1.6]}
+        intensity={1.4}
+        color="#FFFFFF"
+        distance={10}
+      />
+
       {/* Ambient Hemisphere Light */}
       <hemisphereLight
         args={['#F5F0E5', '#0D241C', 0.9]}

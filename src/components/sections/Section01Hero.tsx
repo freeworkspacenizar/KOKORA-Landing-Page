@@ -53,7 +53,7 @@ export const Section01Hero: React.FC = () => {
                 autoRotate={false}
                 dampingFactor={0.05}
                 rotateSpeed={0.7}
-                minPolarAngle={Math.PI / 4}
+                minPolarAngle={Math.PI / 6}
                 maxPolarAngle={Math.PI - Math.PI / 4}
               />
             </Canvas>
