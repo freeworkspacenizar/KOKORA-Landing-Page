@@ -24,22 +24,22 @@ export const localeID: LocaleDictionary = {
   manifesto: {
     badge: 'Manifesto Brand',
     title: 'LEBIH DARI SEKADAR KELAPA.',
-    fullSentence: 'Setiap kelapa menyimpan cerita tentang tanah tempat ia tumbuh, matahari yang mematangkannya, dan tangan-tangan yang mengolahnya dengan penuh dedikasi.',
+    fullSentence: 'Setiap kelapa punya cerita. Kami ingin menghadirkannya dengan cara yang lebih dekat, lebih relevan, dan lebih menarik untuk keseharian.',
     statement1: 'Setiap kelapa menyimpan cerita tentang tanah tempat ia tumbuh,',
     statement2: 'matahari yang mematangkannya, dan tangan-tangan terampil',
     statement3: 'yang mengolahnya dengan penuh dedikasi tanpa kompromi.',
     pillars: [
       {
         title: 'Kemurnian Alami',
-        description: 'Dipanen pada usia optimal langsung dari perkebunan pesisir tropis tanpa pestisida kimiawi sintetis.',
+        description: 'Berasal dari buah kelapa asli kepulauan nusantara tanpa rekayasa aditif.',
       },
       {
         title: 'Kearifan Lokal',
-        description: 'Bermitra erat dengan keluarga petani kelapa nusantara untuk melestarikan metode panen tradisional.',
+        description: 'Menggabungkan tradisi pengolahan tropis dengan standar kualitas modern yang higienis.',
       },
       {
         title: 'Pemberdayaan Berkelanjutan',
-        description: 'Prinsip nol limbah (zero waste) di mana seluruh bagian kelapa diolah kembali menjadi produk bernilai guna.',
+        description: 'Pemanfaatan seluruh elemen kelapa dari daging, air, hingga tempurung dengan prinsip sirkular.',
       },
     ],
   },

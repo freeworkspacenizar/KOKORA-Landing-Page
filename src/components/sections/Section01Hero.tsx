@@ -11,6 +11,7 @@ import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 import { useWebGLAvailable } from '../../hooks/useWebGLAvailable';
 import { useInView } from '../../hooks/useInView';
 import { useSmoothScroll } from '../ui/SmoothScrollProvider';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const Section01Hero: React.FC = () => {
   const containerRef = useRef<HTMLElement>(null);
@@ -18,6 +19,7 @@ export const Section01Hero: React.FC = () => {
   const prefersReduced = usePrefersReducedMotion();
   const hasWebGL = useWebGLAvailable();
   const { scrollTo } = useSmoothScroll();
+  const { t } = useLanguage();
 
   const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault();
@@ -36,10 +38,10 @@ export const Section01Hero: React.FC = () => {
       {/* 3D WebGL Canvas with ErrorBoundary & inView optimization */}
       <div className="absolute inset-0 z-0 flex items-center justify-center">
         {hasWebGL && !prefersReduced ? (
-          <CanvasErrorBoundary title="Kelapa Alami Toko Kelapa">
+          <CanvasErrorBoundary title="Kelapa Alami KOKORA">
             <Canvas
               frameloop={inView ? 'always' : 'never'}
-              camera={{ position: [0, 0, 4.6], fov: 45 }}
+              camera={{ position: [0, 4, 4.6], fov: 40 }}
               dpr={[1, 2]}
               gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
             >
@@ -60,7 +62,7 @@ export const Section01Hero: React.FC = () => {
           </CanvasErrorBoundary>
         ) : (
           <div className="w-full h-full max-w-lg max-h-[500px] flex items-center justify-center p-8">
-            <FallbackPoster title="Kelapa Alami Toko Kelapa" />
+            <FallbackPoster title="Kelapa Alami KOKORA" />
           </div>
         )}
       </div>
@@ -71,7 +73,7 @@ export const Section01Hero: React.FC = () => {
         <div className="pt-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-coconut-cream/10 border border-coconut-cream/15 text-coconut-lime text-xs font-semibold uppercase tracking-widest pointer-events-auto">
             <span className="w-1.5 h-1.5 rounded-full bg-coconut-lime animate-pulse" />
-            DARI ALAM, UNTUK KESEHARIAN
+            {t.hero.eyebrow}
           </div>
         </div>
 
@@ -80,15 +82,15 @@ export const Section01Hero: React.FC = () => {
           {/* Main Display Headline */}
           <div className="lg:col-span-8">
             <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-extrabold tracking-tight leading-[0.95] text-coconut-cream select-none drop-shadow-md">
-              ALAMI.<br />
-              <span className="text-coconut-lime italic font-serif">TAPI NGGAK</span> BIASA.
+              {t.hero.headlineLine1}<br />
+              <span className="text-coconut-lime italic font-serif">{t.hero.headlineAccent}</span> {t.hero.headlineLine2}
             </h1>
           </div>
 
           {/* Supporting Copy & CTAs */}
           <div className="lg:col-span-4 flex flex-col gap-6 backdrop-blur-sm bg-coconut-dark/30 lg:bg-transparent p-6 lg:p-0 rounded-2xl border border-coconut-cream/10 lg:border-none pointer-events-auto">
             <p className="text-base sm:text-lg text-coconut-cream/80 leading-relaxed font-light">
-              Kenali sisi lain kelapa melalui pengalaman yang dirancang untuk menginspirasi.
+              {t.hero.subcopy}
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
@@ -99,7 +101,7 @@ export const Section01Hero: React.FC = () => {
                 size="md"
                 onClick={(e) => handleScrollClick(e, '#katalog')}
               >
-                Jelajahi Produk
+                {t.hero.primaryCta}
               </Button>
               <Button
                 asLink
@@ -108,7 +110,7 @@ export const Section01Hero: React.FC = () => {
                 size="md"
                 onClick={(e) => handleScrollClick(e, '#manifesto')}
               >
-                Cerita Kami
+                {t.hero.secondaryCta}
               </Button>
             </div>
           </div>
@@ -118,16 +120,16 @@ export const Section01Hero: React.FC = () => {
         <div className="flex items-center justify-between pt-6 border-t border-coconut-cream/10 text-xs text-coconut-cream/60 pointer-events-auto">
           <div className="flex items-center gap-2">
             <Move size={14} className="text-coconut-lime animate-bounce" />
-            <span className="tracking-wide">Geser. Putar. Jelajahi.</span>
+            <span className="tracking-wide">{t.hero.microcopy}</span>
           </div>
 
           <a
             href="#manifesto"
             onClick={(e) => handleScrollClick(e, '#manifesto')}
             className="flex items-center gap-2 hover:text-coconut-lime transition-colors group"
-            aria-label="Gulir ke Seksi Manifesto"
+            aria-label={t.hero.scrollDownAria}
           >
-            <span>Gulir ke Bawah</span>
+            <span>{t.hero.secondaryCta}</span>
             <ArrowDown size={14} className="group-hover:translate-y-0.5 transition-transform" />
           </a>
         </div>

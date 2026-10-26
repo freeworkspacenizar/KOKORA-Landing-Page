@@ -1,9 +1,11 @@
 import React from 'react';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+import { useLanguage } from '../../context/LanguageContext';
 import { Sparkles, Leaf, Compass } from 'lucide-react';
 
 export const Section02Manifesto: React.FC = () => {
-  const manifestoText = "Setiap kelapa punya cerita. Kami ingin menghadirkannya dengan cara yang lebih dekat, lebih relevan, dan lebih menarik untuk keseharian.";
+  const { t } = useLanguage();
+  const manifestoText = t.manifesto.fullSentence;
   const words = manifestoText.split(' ');
 
   const sectionRef = useScrollAnimation<HTMLElement>(({ el, gsap }) => {
@@ -46,18 +48,18 @@ export const Section02Manifesto: React.FC = () => {
   const pillars = [
     {
       icon: <Leaf className="w-5 h-5 text-coconut-husk" />,
-      title: 'Kemurnian Alami',
-      desc: 'Berasal dari buah kelapa asli kepulauan nusantara tanpa rekayasa aditif.',
+      title: t.manifesto.pillars[0].title,
+      desc: t.manifesto.pillars[0].description,
     },
     {
       icon: <Compass className="w-5 h-5 text-coconut-husk" />,
-      title: 'Kearifan Lokal',
-      desc: 'Menggabungkan tradisi pengolahan tropis dengan standar kualitas modern yang higienis.',
+      title: t.manifesto.pillars[1].title,
+      desc: t.manifesto.pillars[1].description,
     },
     {
       icon: <Sparkles className="w-5 h-5 text-coconut-husk" />,
-      title: 'Pemberdayaan Berkelanjutan',
-      desc: 'Pemanfaatan seluruh elemen kelapa dari daging, air, hingga tempurung dengan prinsip sirkular.',
+      title: t.manifesto.pillars[2].title,
+      desc: t.manifesto.pillars[2].description,
     },
   ];
 
@@ -80,13 +82,13 @@ export const Section02Manifesto: React.FC = () => {
         <div className="flex items-center gap-3 mb-8">
           <span className="w-8 h-[1px] bg-coconut-husk" />
           <span className="text-xs uppercase font-semibold tracking-widest text-coconut-husk">
-            Filosofi Kami
+            {t.manifesto.badge}
           </span>
         </div>
 
         {/* Large Editorial Headline */}
         <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-coconut-dark leading-[1.05] mb-12">
-          LEBIH DARI SEKADAR KELAPA.
+          {t.manifesto.title}
         </h2>
 
         {/* Word-by-word reveal supporting statement */}
