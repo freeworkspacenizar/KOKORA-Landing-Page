@@ -12,9 +12,8 @@ export const localeEN: LocaleDictionary = {
   },
   hero: {
     eyebrow: 'FROM NATURE, FOR EVERYDAY LIFE',
-    headlineLine1: 'NATURAL.',
-    headlineAccent: 'YET UNCOMMONLY',
-    headlineLine2: 'REFINED.',
+    headlineLine1: 'TROPICAL',
+    headlineAccent: 'COCONUT TASTE',
     subcopy: 'Discover the untold essence of coconut through an immersive journey designed to inspire.',
     primaryCta: 'Explore Collection',
     secondaryCta: 'Our Story',

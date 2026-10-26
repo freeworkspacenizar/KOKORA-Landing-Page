@@ -12,9 +12,8 @@ export const localeID: LocaleDictionary = {
   },
   hero: {
     eyebrow: 'DARI ALAM, UNTUK KESEHARIAN',
-    headlineLine1: 'ALAMI.',
-    headlineAccent: 'TAPI NGGAK',
-    headlineLine2: 'BIASA.',
+    headlineLine1: 'CITA RASA ALAM',
+    headlineAccent: 'TROPIS',
     subcopy: 'Kenali sisi lain kelapa melalui pengalaman yang dirancang untuk menginspirasi.',
     primaryCta: 'Jelajahi Produk',
     secondaryCta: 'Cerita Kami',

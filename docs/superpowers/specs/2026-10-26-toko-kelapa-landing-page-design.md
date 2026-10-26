@@ -119,7 +119,7 @@ src/
 - **Latar:** *Deep Coconut Green* (`#173F32`).
 - **Elemen:**
   - Eyebrow: `DARI ALAM, UNTUK KESEHARIAN`
-  - Headline: `"ALAMI. TAPI NGGAK BIASA."`
+  - Headline: `"Cita Rasa Alam Tropis."`
   - Body: `"Kenali sisi lain kelapa melalui pengalaman yang dirancang untuk menginspirasi."`
   - CTA Utama: `"Jelajahi Produk"` (scroll halus ke Seksi 04)
   - CTA Sekunder: `"Cerita Kami"` (scroll halus ke Seksi 02)
