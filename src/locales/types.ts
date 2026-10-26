@@ -103,9 +103,10 @@ export interface ConversionLocale {
   eyebrow: string;
   headline: string;
   supporting: string;
-  ctaText: string;
+  catalogCta: string;
+  contactCta: string;
   guaranteeText: string;
-  whatsappMessage: string;
+  whatsappUrl: string;
 }
 
 export interface FooterLocale {
@@ -113,13 +114,18 @@ export interface FooterLocale {
   signatureLabel: string;
   signatureQuote: string;
   colExploration: string;
+  colCatalog: string;
   colContact: string;
   colSocial: string;
   linkHome: string;
-  linkManifesto: string;
+  linkStory: string;
   linkDeconstruct: string;
+  linkLifestyle: string;
   linkCatalog: string;
-  linkStudio: string;
+  linkVco: string;
+  linkWater: string;
+  linkSugar: string;
+  linkCharcoal: string;
   linkPrivacy: string;
   linkTerms: string;
   rights: string;

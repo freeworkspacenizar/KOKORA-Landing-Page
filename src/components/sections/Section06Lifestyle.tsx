@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sun, Heart, Coffee } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface LifestyleStory {
   id: string;
@@ -12,35 +13,29 @@ interface LifestyleStory {
 }
 
 export const Section06Lifestyle: React.FC = () => {
-  const stories: LifestyleStory[] = [
-    {
-      id: 'morning-balance',
-      title: 'Keseimbangan Alami',
-      category: 'Ritual Pagi Hari',
-      narrative: 'Memulai hari dengan hidrasi murni air kelapa segar untuk mengembalikan elektrolit alami tubuh setelah istirahat malam.',
-      icon: <Sun className="w-5 h-5 text-coconut-husk" />,
-      accentBadge: 'Penyegar Alami',
-      emoji: '🌅',
-    },
-    {
-      id: 'body-care',
-      title: 'Ritual Perawatan Murni',
-      category: 'Kesehatan & Kulit',
-      narrative: 'Sentuhan minyak kelapa murni (VCO) cold-pressed memberikan kelembapan alami mendalam tanpa bahan kimia aditif sintetis.',
-      icon: <Heart className="w-5 h-5 text-coconut-husk" />,
-      accentBadge: 'Perawatan Bersih',
-      emoji: '🌿',
-    },
-    {
-      id: 'culinary-craft',
-      title: 'Dapur Tropis Nusantara',
-      category: 'Kreasi Kuliner',
-      narrative: 'Gula kelapa kristal artisan menghadirkan rasa manis lembut bernuansa karamel hangat pada seduhan kopi dan hidangan sehat.',
-      icon: <Coffee className="w-5 h-5 text-coconut-husk" />,
-      accentBadge: 'Pangan Berkelanjutan',
-      emoji: '☕',
-    },
-  ];
+  const { t } = useLanguage();
+
+  const iconMap: Record<string, React.ReactNode> = {
+    'morning-balance': <Sun className="w-5 h-5 text-coconut-husk" />,
+    'body-care': <Heart className="w-5 h-5 text-coconut-husk" />,
+    'culinary-craft': <Coffee className="w-5 h-5 text-coconut-husk" />,
+  };
+
+  const emojiMap: Record<string, string> = {
+    'morning-balance': '🌅',
+    'body-care': '🌿',
+    'culinary-craft': '☕',
+  };
+
+  const stories: LifestyleStory[] = t.lifestyle.stories.map((story) => ({
+    id: story.id,
+    title: story.title,
+    category: story.tag,
+    narrative: story.description,
+    icon: iconMap[story.id] || <Sun className="w-5 h-5 text-coconut-husk" />,
+    accentBadge: story.tag,
+    emoji: emojiMap[story.id] || '🥥',
+  }));
 
   return (
     <section
@@ -51,51 +46,51 @@ export const Section06Lifestyle: React.FC = () => {
         {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-coconut-husk/10 border border-coconut-husk/20 text-coconut-husk text-xs font-semibold uppercase tracking-widest mb-4">
-            Dunia Kelapa & Keseharian
+            {t.lifestyle.badge}
           </div>
           <h2 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-coconut-dark leading-[1.08] mb-4">
-            BAWA NUANSA ALAMI KE KESEHARIANMU.
+            {t.lifestyle.title}
           </h2>
           <p className="text-base sm:text-lg text-coconut-dark/75 font-light leading-relaxed">
-            Temukan bagaimana produk Toko Kelapa dapat menjadi bagian dari keseharianmu, menghadirkan keselarasan antara alam tropis dan gaya hidup kontemporer.
+            {t.lifestyle.subtitle}
           </p>
         </div>
 
-        {/* Editorial Storytelling Grid */}
+        {/* 3-Story Asymmetric Editorial Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {stories.map((story) => (
+          {stories.map((story, index) => (
             <div
               key={story.id}
-              className="group relative flex flex-col justify-between p-8 rounded-3xl bg-white/70 hover:bg-white border border-coconut-husk/15 hover:border-coconut-husk/30 shadow-md hover:shadow-xl transition-all duration-500"
+              className={`p-8 rounded-3xl bg-white/70 hover:bg-white border border-coconut-husk/15 transition-all duration-500 hover:shadow-xl hover:-translate-y-1.5 flex flex-col justify-between ${
+                index === 1 ? 'md:-translate-y-4 shadow-lg bg-white/90' : ''
+              }`}
             >
               <div>
-                {/* Visual Representation Window */}
-                <div className="w-full h-48 rounded-2xl bg-gradient-to-br from-coconut-cream via-white to-coconut-cream/60 flex items-center justify-center mb-6 relative overflow-hidden group-hover:scale-[1.02] transition-transform duration-500 border border-coconut-husk/10">
-                  <span className="text-6xl drop-shadow-sm select-none">
-                    {story.emoji}
-                  </span>
-                  <div className="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-[11px] font-semibold text-coconut-dark shadow-sm">
+                <div className="flex items-center justify-between mb-6">
+                  <span className="p-3 rounded-2xl bg-coconut-cream border border-coconut-husk/15">
                     {story.icon}
-                    <span>{story.category}</span>
-                  </div>
+                  </span>
+                  <span className="text-3xl">{story.emoji}</span>
                 </div>
 
-                <div className="inline-block text-[11px] font-mono uppercase tracking-wider text-coconut-husk font-semibold mb-2">
-                  {story.accentBadge}
+                <div className="text-xs uppercase font-mono tracking-wider text-coconut-husk font-semibold mb-2">
+                  {story.category}
                 </div>
 
                 <h3 className="font-display text-2xl font-bold text-coconut-dark mb-3">
                   {story.title}
                 </h3>
 
-                <p className="text-sm text-coconut-dark/80 font-light leading-relaxed">
+                <p className="text-sm text-coconut-dark/75 font-light leading-relaxed">
                   {story.narrative}
                 </p>
               </div>
 
-              <div className="pt-6 mt-6 border-t border-coconut-husk/10 flex items-center justify-between text-xs font-medium text-coconut-dark/70">
-                <span>Tradisi Nusantara</span>
-                <span className="text-coconut-husk font-bold">100% Organik</span>
+              <div className="pt-6 mt-6 border-t border-coconut-husk/10 flex items-center justify-between">
+                <span className="text-[11px] font-mono text-coconut-husk/80 uppercase tracking-widest">
+                  KOKORA Everyday
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-coconut-lime" />
               </div>
             </div>
           ))}

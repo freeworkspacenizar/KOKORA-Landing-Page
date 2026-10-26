@@ -12,6 +12,7 @@ import { RotateCcw, Play, Pause, ShoppingBag } from 'lucide-react';
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 import { useWebGLAvailable } from '../../hooks/useWebGLAvailable';
 import { useInView } from '../../hooks/useInView';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const Section05Product3D: React.FC = () => {
   const containerRef = useRef<HTMLElement>(null);
@@ -19,6 +20,7 @@ export const Section05Product3D: React.FC = () => {
   const prefersReduced = usePrefersReducedMotion();
   const hasWebGL = useWebGLAvailable();
   const controlsRef = useRef<OrbitControlsImpl>(null);
+  const { t } = useLanguage();
   const [selectedVariant, setSelectedVariant] = useState(FLAGSHIP_PRODUCT.variants?.[0] || {
     id: 'vco-250',
     volume: '250 ml',
@@ -26,6 +28,20 @@ export const Section05Product3D: React.FC = () => {
     scale: 1.0,
   });
   const [isRotating, setIsRotating] = useState(false);
+
+  const localizedHotspots = FLAGSHIP_PRODUCT.hotspots?.map((h) => {
+    let loc = t.studio3d.hotspots[h.id];
+    if (!loc) {
+      if (h.id === 'cold-extract') loc = t.studio3d.hotspots.coldPressed;
+      else if (h.id === 'glass-bottle') loc = t.studio3d.hotspots.amberGlass;
+      else if (h.id === 'organic-purity') loc = t.studio3d.hotspots.naturalSeal;
+    }
+    return {
+      ...h,
+      title: loc?.title || h.title,
+      description: loc?.description || h.description,
+    };
+  });
 
   const handleResetView = () => {
     if (controlsRef.current) {
@@ -46,19 +62,19 @@ export const Section05Product3D: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto w-full flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-coconut-lime/10 border border-coconut-lime/20 text-coconut-lime text-xs font-semibold uppercase tracking-widest mb-3">
-            STUDIO INSPEKSI 3D
+            {t.studio3d.badge}
           </div>
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-coconut-cream tracking-tight">
-            {FLAGSHIP_PRODUCT.name}
+            {t.studio3d.heading}
           </h2>
           <p className="text-sm text-coconut-cream/70 mt-2 max-w-lg font-light">
-            Eksplorasi kemasan botol kaca apothecary dan detail kualitas minyak kelapa murni dari berbagai sudut.
+            {t.studio3d.subheading}
           </p>
         </div>
 
         {/* Variant Volume Selector */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 bg-coconut-green/60 p-2 rounded-2xl border border-coconut-cream/15 backdrop-blur-md">
-          <span className="text-xs text-coconut-cream/70 px-2 font-medium">Ukuran Kemasan:</span>
+          <span className="text-xs text-coconut-cream/70 px-2 font-medium">{t.studio3d.selectVolume}:</span>
           <div className="flex gap-2">
             {FLAGSHIP_PRODUCT.variants?.map((v) => (
               <button
@@ -66,11 +82,10 @@ export const Section05Product3D: React.FC = () => {
                 type="button"
                 onClick={() => setSelectedVariant(v)}
                 aria-pressed={selectedVariant.id === v.id}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
-                  selectedVariant.id === v.id
-                    ? 'bg-coconut-lime text-coconut-dark shadow-md'
-                    : 'text-coconut-cream/80 hover:text-white hover:bg-white/10'
-                }`}
+                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all ${selectedVariant.id === v.id
+                  ? 'bg-coconut-lime text-coconut-dark shadow-md'
+                  : 'text-coconut-cream/80 hover:text-white hover:bg-white/10'
+                  }`}
               >
                 {v.volume}
               </button>
@@ -85,7 +100,7 @@ export const Section05Product3D: React.FC = () => {
           <CanvasErrorBoundary title={FLAGSHIP_PRODUCT.name}>
             <Canvas
               frameloop={inView ? 'always' : 'never'}
-              camera={{ position: [0, 0.8, 3.8], fov: 42 }}
+              camera={{ position: [0, 0.8, 3.8], fov: 48 }}
               dpr={[1, 2]}
               shadows
               gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
@@ -94,7 +109,7 @@ export const Section05Product3D: React.FC = () => {
               <Suspense fallback={null}>
                 <VcoBottleModel
                   scale={selectedVariant.scale}
-                  hotspots={FLAGSHIP_PRODUCT.hotspots}
+                  hotspots={localizedHotspots}
                 />
               </Suspense>
               <OrbitControls
@@ -153,10 +168,10 @@ export const Section05Product3D: React.FC = () => {
       {/* Accessible Hotspots Summary Strip */}
       <div className="relative z-10 max-w-6xl mx-auto w-full mt-8">
         <div className="text-xs uppercase tracking-wider text-coconut-cream/60 mb-3 font-semibold">
-          Spesifikasi Kualitas & Keberlanjutan Terverifikasi:
+          {t.studio3d.viewDetails}:
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {FLAGSHIP_PRODUCT.hotspots?.map((hotspot) => (
+          {localizedHotspots?.map((hotspot) => (
             <div
               key={hotspot.id}
               className="p-4 rounded-2xl bg-coconut-green/30 border border-coconut-cream/10 backdrop-blur-sm"
@@ -175,7 +190,7 @@ export const Section05Product3D: React.FC = () => {
       {/* Bottom Order CTA */}
       <div className="relative z-10 max-w-6xl mx-auto w-full mt-8 pt-6 border-t border-coconut-cream/10 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="text-xs text-coconut-cream/60 text-center sm:text-left">
-          <span>Tersedia untuk pengiriman ke seluruh Indonesia dengan garansi kemurnian.</span>
+          <span>{t.conversion.guaranteeText}</span>
         </div>
 
         <Button
@@ -188,7 +203,7 @@ export const Section05Product3D: React.FC = () => {
           className="w-full sm:w-auto"
         >
           <ShoppingBag size={16} />
-          <span>Pesan Botol Ini ({selectedVariant.volume})</span>
+          <span>{t.studio3d.orderWhatsApp} ({selectedVariant.volume})</span>
         </Button>
       </div>
     </section>

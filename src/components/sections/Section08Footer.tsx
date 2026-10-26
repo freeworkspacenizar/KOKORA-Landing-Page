@@ -1,8 +1,10 @@
 import React from 'react';
 import { useSmoothScroll } from '../ui/SmoothScrollProvider';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const Section08Footer: React.FC = () => {
   const { scrollTo } = useSmoothScroll();
+  const { t } = useLanguage();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -20,20 +22,20 @@ export const Section08Footer: React.FC = () => {
                 🥥
               </span>
               <span className="font-display font-bold tracking-wider text-2xl uppercase text-coconut-cream">
-                Toko Kelapa
+                KOKORA
               </span>
             </div>
             <p className="text-sm text-coconut-cream/70 max-w-md font-light leading-relaxed">
-              Mengangkat kelapa nusantara ke tingkat kemewahan kontemporer melalui inovasi tiga dimensi, integritas kualitas, dan keberlanjutan alami.
+              {t.footer.motto}
             </p>
           </div>
 
           <div className="lg:col-span-6 flex flex-col justify-end lg:items-end">
             <span className="text-xs uppercase font-mono tracking-widest text-coconut-lime mb-2">
-              Signature Manifesto
+              {t.footer.signatureLabel}
             </span>
             <p className="font-display text-xl sm:text-2xl font-bold text-coconut-cream tracking-tight lg:text-right">
-              &ldquo;BUKAN SEKADAR KELAPA. INI CARA KAMI MELIHATNYA.&rdquo;
+              {t.footer.signatureQuote}
             </p>
           </div>
         </div>
@@ -42,7 +44,7 @@ export const Section08Footer: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 py-12 border-b border-coconut-cream/10 text-xs">
           <div>
             <h4 className="font-display font-bold text-coconut-cream uppercase tracking-wider mb-4">
-              Eksplorasi
+              {t.footer.colExploration}
             </h4>
             <ul className="space-y-2.5 font-light">
               <li>
@@ -51,7 +53,7 @@ export const Section08Footer: React.FC = () => {
                   onClick={(e) => handleNavClick(e, '#')}
                   className="hover:text-coconut-lime transition-colors"
                 >
-                  Beranda
+                  {t.footer.linkHome}
                 </a>
               </li>
               <li>
@@ -60,7 +62,7 @@ export const Section08Footer: React.FC = () => {
                   onClick={(e) => handleNavClick(e, '#manifesto')}
                   className="hover:text-coconut-lime transition-colors"
                 >
-                  Cerita Kami
+                  {t.footer.linkStory}
                 </a>
               </li>
               <li>
@@ -69,7 +71,7 @@ export const Section08Footer: React.FC = () => {
                   onClick={(e) => handleNavClick(e, '#dekonstruksi')}
                   className="hover:text-coconut-lime transition-colors"
                 >
-                  Dekonstruksi 3D
+                  {t.footer.linkDeconstruct}
                 </a>
               </li>
               <li>
@@ -78,7 +80,7 @@ export const Section08Footer: React.FC = () => {
                   onClick={(e) => handleNavClick(e, '#lifestyle')}
                   className="hover:text-coconut-lime transition-colors"
                 >
-                  Dunia Kelapa
+                  {t.footer.linkLifestyle}
                 </a>
               </li>
             </ul>
@@ -86,7 +88,7 @@ export const Section08Footer: React.FC = () => {
 
           <div>
             <h4 className="font-display font-bold text-coconut-cream uppercase tracking-wider mb-4">
-              Katalog
+              {t.footer.colCatalog}
             </h4>
             <ul className="space-y-2.5 font-light">
               <li>
@@ -95,7 +97,7 @@ export const Section08Footer: React.FC = () => {
                   onClick={(e) => handleNavClick(e, '#katalog')}
                   className="hover:text-coconut-lime transition-colors"
                 >
-                  Katalog Produk
+                  {t.footer.linkCatalog}
                 </a>
               </li>
               <li>
@@ -104,7 +106,7 @@ export const Section08Footer: React.FC = () => {
                   onClick={(e) => handleNavClick(e, '#studio-3d')}
                   className="hover:text-coconut-lime transition-colors"
                 >
-                  Virgin Coconut Oil
+                  {t.footer.linkVco}
                 </a>
               </li>
               <li>
@@ -113,7 +115,7 @@ export const Section08Footer: React.FC = () => {
                   onClick={(e) => handleNavClick(e, '#katalog')}
                   className="hover:text-coconut-lime transition-colors"
                 >
-                  Raw Coconut Water
+                  {t.footer.linkWater}
                 </a>
               </li>
               <li>
@@ -122,7 +124,7 @@ export const Section08Footer: React.FC = () => {
                   onClick={(e) => handleNavClick(e, '#katalog')}
                   className="hover:text-coconut-lime transition-colors"
                 >
-                  Artisan Coconut Sugar
+                  {t.footer.linkSugar}
                 </a>
               </li>
             </ul>
@@ -130,7 +132,7 @@ export const Section08Footer: React.FC = () => {
 
           <div>
             <h4 className="font-display font-bold text-coconut-cream uppercase tracking-wider mb-4">
-              Kanal Resmi
+              {t.footer.colContact}
             </h4>
             <ul className="space-y-2.5 font-light">
               <li>
@@ -145,12 +147,12 @@ export const Section08Footer: React.FC = () => {
               </li>
               <li>
                 <span className="text-coconut-cream/50 cursor-not-allowed">
-                  Instagram @tokokelapa (Placeholder)
+                  Instagram @KOKORA
                 </span>
               </li>
               <li>
                 <span className="text-coconut-cream/50 cursor-not-allowed">
-                  Email: halo@tokokelapa.id (Placeholder)
+                  Email: Admin@Kokora.id
                 </span>
               </li>
             </ul>
@@ -158,7 +160,7 @@ export const Section08Footer: React.FC = () => {
 
           <div>
             <h4 className="font-display font-bold text-coconut-cream uppercase tracking-wider mb-4">
-              Komitmen Kualitas
+              {t.footer.colSocial}
             </h4>
             <p className="text-xs text-coconut-cream/70 font-light leading-relaxed">
               Diproduksi dengan prinsip keberlanjutan dan kemitraan adil bersama petani kelapa Indonesia.
@@ -168,10 +170,10 @@ export const Section08Footer: React.FC = () => {
 
         {/* Bottom Copyright Strip */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-coconut-cream/50">
-          <p>© {new Date().getFullYear()} Toko Kelapa. Hak Cipta Dilindungi.</p>
+          <p>{t.footer.rights}</p>
           <div className="flex gap-6">
-            <span>Kebijakan Privasi</span>
-            <span>Syarat & Ketentuan</span>
+            <span>{t.footer.linkPrivacy}</span>
+            <span>{t.footer.linkTerms}</span>
           </div>
         </div>
       </div>
