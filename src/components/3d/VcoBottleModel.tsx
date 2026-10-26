@@ -1,23 +1,19 @@
 import React, { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { Html } from '@react-three/drei';
+import { ProductHotspot } from '../../data/products';
+import { HotspotPin } from '../ui/HotspotPin';
 
 interface VcoBottleModelProps {
   scale?: number;
-  autoRotate?: boolean;
+  hotspots?: ProductHotspot[];
 }
 
 export const VcoBottleModel: React.FC<VcoBottleModelProps> = ({
   scale = 1.0,
-  autoRotate = false,
+  hotspots = [],
 }) => {
   const groupRef = useRef<THREE.Group>(null);
-
-  useFrame((_, delta) => {
-    if (autoRotate && groupRef.current) {
-      groupRef.current.rotation.y += delta * 0.4;
-    }
-  });
 
   return (
     <group ref={groupRef} scale={[scale, scale, scale]} position={[0, -0.6, 0]}>
@@ -91,6 +87,15 @@ export const VcoBottleModel: React.FC<VcoBottleModelProps> = ({
           metalness={0.0}
         />
       </mesh>
+
+      {/* 6. 3D Anchored Hotspots tracking bottle space */}
+      {hotspots.map((hotspot, idx) => (
+        <group key={hotspot.id} position={hotspot.position}>
+          <Html center distanceFactor={6} zIndexRange={[100, 0]}>
+            <HotspotPin hotspot={hotspot} index={idx} />
+          </Html>
+        </group>
+      ))}
 
       {/* Studio Floor Shadow Receiver */}
       <mesh position={[0, 0.05, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>

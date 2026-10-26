@@ -1,28 +1,23 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import { CoconutModel } from '../3d/CoconutModel';
 import { SceneLighting } from '../3d/SceneLighting';
 import { FallbackPoster } from '../3d/FallbackPoster';
+import { CanvasErrorBoundary } from '../3d/CanvasErrorBoundary';
 import { Button } from '../ui/Button';
 import { ArrowDown, Move } from 'lucide-react';
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
+import { useWebGLAvailable } from '../../hooks/useWebGLAvailable';
+import { useInView } from '../../hooks/useInView';
 import { useSmoothScroll } from '../ui/SmoothScrollProvider';
 
 export const Section01Hero: React.FC = () => {
+  const containerRef = useRef<HTMLElement>(null);
+  const inView = useInView(containerRef);
   const prefersReduced = usePrefersReducedMotion();
+  const hasWebGL = useWebGLAvailable();
   const { scrollTo } = useSmoothScroll();
-  const [hasWebGL, setHasWebGL] = useState(true);
-
-  useEffect(() => {
-    try {
-      const canvas = document.createElement('canvas');
-      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-      if (!gl) setHasWebGL(false);
-    } catch {
-      setHasWebGL(false);
-    }
-  }, []);
 
   const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault();
@@ -31,34 +26,38 @@ export const Section01Hero: React.FC = () => {
 
   return (
     <section
+      ref={containerRef}
       id="hero"
       className="relative min-h-screen w-full flex flex-col justify-between pt-28 pb-12 px-6 md:px-12 bg-coconut-green text-coconut-cream overflow-hidden"
     >
       {/* Background radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-coconut-lime/5 rounded-full blur-[140px] pointer-events-none" />
 
-      {/* 3D WebGL Canvas or Fallback Layer */}
+      {/* 3D WebGL Canvas with ErrorBoundary & inView optimization */}
       <div className="absolute inset-0 z-0 flex items-center justify-center">
         {hasWebGL && !prefersReduced ? (
-          <Canvas
-            camera={{ position: [0, 0, 4.6], fov: 45 }}
-            dpr={[1, 2]}
-            gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-          >
-            <SceneLighting />
-            <Suspense fallback={null}>
-              <CoconutModel isHero={true} explodeProgress={0} />
-            </Suspense>
-            <OrbitControls
-              enableZoom={false}
-              enablePan={false}
-              autoRotate={false}
-              dampingFactor={0.05}
-              rotateSpeed={0.7}
-              minPolarAngle={Math.PI / 4}
-              maxPolarAngle={Math.PI - Math.PI / 4}
-            />
-          </Canvas>
+          <CanvasErrorBoundary title="Kelapa Alami Toko Kelapa">
+            <Canvas
+              frameloop={inView ? 'always' : 'never'}
+              camera={{ position: [0, 0, 4.6], fov: 45 }}
+              dpr={[1, 2]}
+              gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+            >
+              <SceneLighting />
+              <Suspense fallback={null}>
+                <CoconutModel isHero={true} explodeProgress={0} />
+              </Suspense>
+              <OrbitControls
+                enableZoom={false}
+                enablePan={false}
+                autoRotate={false}
+                dampingFactor={0.05}
+                rotateSpeed={0.7}
+                minPolarAngle={Math.PI / 4}
+                maxPolarAngle={Math.PI - Math.PI / 4}
+              />
+            </Canvas>
+          </CanvasErrorBoundary>
         ) : (
           <div className="w-full h-full max-w-lg max-h-[500px] flex items-center justify-center p-8">
             <FallbackPoster title="Kelapa Alami Toko Kelapa" />
@@ -66,7 +65,7 @@ export const Section01Hero: React.FC = () => {
         )}
       </div>
 
-      {/* Editorial Content Overlay (Pointer-events none on wrapper, auto on buttons) */}
+      {/* Editorial Content Overlay */}
       <div className="relative z-10 max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between pointer-events-none">
         {/* Top Eyebrow */}
         <div className="pt-4">
@@ -98,7 +97,7 @@ export const Section01Hero: React.FC = () => {
                 href="#katalog"
                 variant="primary"
                 size="md"
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleScrollClick(e, '#katalog')}
+                onClick={(e) => handleScrollClick(e, '#katalog')}
               >
                 Jelajahi Produk
               </Button>
@@ -107,7 +106,7 @@ export const Section01Hero: React.FC = () => {
                 href="#manifesto"
                 variant="outline"
                 size="md"
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleScrollClick(e, '#manifesto')}
+                onClick={(e) => handleScrollClick(e, '#manifesto')}
               >
                 Cerita Kami
               </Button>

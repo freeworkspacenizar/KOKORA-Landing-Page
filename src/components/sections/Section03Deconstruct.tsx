@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
+import { useInView } from '../../hooks/useInView';
 import { DeconstructedCanvas } from '../3d/DeconstructedCanvas';
 import { FallbackPoster } from '../3d/FallbackPoster';
 
@@ -53,41 +54,37 @@ export const Section03Deconstruct: React.FC = () => {
     },
   ];
 
-  const sectionRef = useScrollAnimation<HTMLElement>(({ el, gsap, ScrollTrigger }) => {
+  const sectionRef = useScrollAnimation<HTMLElement>(({ el, gsap }) => {
     if (prefersReduced) return;
 
-    // Pin section and scrub explodeProgress
-    ScrollTrigger.create({
-      trigger: el,
-      start: 'top top',
-      end: '+=200%',
-      pin: true,
-      scrub: 1,
-      onUpdate: (self) => {
-        setExplodeProgress(self.progress);
+    // Single unified GSAP timeline attached to pinned container
+    const cards = el.querySelectorAll('.anatomy-card');
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: 'top top',
+        end: '+=200%',
+        pin: true,
+        scrub: 1,
+        onUpdate: (self) => {
+          setExplodeProgress(self.progress);
+        },
       },
     });
 
-    // Fade in and translate labels as progress increases
-    const cards = el.querySelectorAll('.anatomy-card');
+    // Sequence cards along the single scrubbed timeline
     cards.forEach((card, index) => {
-      gsap.fromTo(
+      tl.fromTo(
         card,
         { opacity: 0, scale: 0.9, y: 20 },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          scrollTrigger: {
-            trigger: el,
-            start: `${20 + index * 18}% top`,
-            end: `${45 + index * 18}% top`,
-            scrub: true,
-          },
-        }
+        { opacity: 1, scale: 1, y: 0, duration: 0.25 },
+        0.2 + index * 0.15
       );
     });
   });
+
+  const inView = useInView(sectionRef);
 
   return (
     <section
@@ -116,7 +113,7 @@ export const Section03Deconstruct: React.FC = () => {
       <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
         <div className="w-full h-full max-w-5xl max-h-[80vh] flex items-center justify-center">
           {!prefersReduced ? (
-            <DeconstructedCanvas explodeProgress={explodeProgress} />
+            <DeconstructedCanvas explodeProgress={explodeProgress} inView={inView} />
           ) : (
             <div className="w-80 h-80">
               <FallbackPoster title="Dekonstruksi Kelapa Alami" />
@@ -125,15 +122,14 @@ export const Section03Deconstruct: React.FC = () => {
         </div>
       </div>
 
-      {/* Floating Anatomical Labels (Desktop & Large Screens) */}
+      {/* Floating Anatomical Labels (Driven cleanly by single GSAP timeline) */}
       <div className="relative z-20 max-w-7xl mx-auto w-full h-[60vh] hidden md:block pointer-events-none">
         {anatomyParts.map((part) => (
           <div
             key={part.id}
-            className={`anatomy-card absolute ${part.positionClass} max-w-xs p-5 rounded-2xl bg-coconut-dark/75 backdrop-blur-md border border-coconut-cream/15 shadow-2xl pointer-events-auto transition-transform hover:scale-105 duration-300`}
-            style={{
-              opacity: prefersReduced ? 1 : Math.min(1, Math.max(0, (explodeProgress - 0.15) * 2.2)),
-            }}
+            className={`anatomy-card absolute ${part.positionClass} max-w-xs p-5 rounded-2xl bg-coconut-dark/75 backdrop-blur-md border border-coconut-cream/15 shadow-2xl pointer-events-auto transition-transform hover:scale-105 duration-300 ${
+              prefersReduced ? 'opacity-100' : 'opacity-0'
+            }`}
           >
             <div className="flex items-center justify-between gap-2 mb-2">
               <span className="font-display font-bold text-base tracking-wider text-coconut-cream">

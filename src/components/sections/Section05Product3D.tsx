@@ -6,13 +6,18 @@ import { FLAGSHIP_PRODUCT } from '../../data/products';
 import { VcoBottleModel } from '../3d/VcoBottleModel';
 import { SceneLighting } from '../3d/SceneLighting';
 import { FallbackPoster } from '../3d/FallbackPoster';
-import { HotspotPin } from '../ui/HotspotPin';
+import { CanvasErrorBoundary } from '../3d/CanvasErrorBoundary';
 import { Button } from '../ui/Button';
 import { RotateCcw, Play, Pause, ShoppingBag } from 'lucide-react';
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
+import { useWebGLAvailable } from '../../hooks/useWebGLAvailable';
+import { useInView } from '../../hooks/useInView';
 
 export const Section05Product3D: React.FC = () => {
+  const containerRef = useRef<HTMLElement>(null);
+  const inView = useInView(containerRef);
   const prefersReduced = usePrefersReducedMotion();
+  const hasWebGL = useWebGLAvailable();
   const controlsRef = useRef<OrbitControlsImpl>(null);
   const [selectedVariant, setSelectedVariant] = useState(FLAGSHIP_PRODUCT.variants?.[0] || {
     id: 'vco-250',
@@ -30,6 +35,7 @@ export const Section05Product3D: React.FC = () => {
 
   return (
     <section
+      ref={containerRef}
       id="studio-3d"
       className="relative min-h-screen py-24 px-6 md:px-12 bg-coconut-dark text-coconut-cream overflow-hidden flex flex-col justify-between"
     >
@@ -75,27 +81,35 @@ export const Section05Product3D: React.FC = () => {
 
       {/* Main 3D Canvas Stage */}
       <div className="relative z-10 w-full h-[55vh] md:h-[60vh] max-w-6xl mx-auto rounded-3xl bg-coconut-green/20 border border-coconut-cream/10 overflow-hidden shadow-2xl flex items-center justify-center">
-        {!prefersReduced ? (
-          <Canvas
-            camera={{ position: [0, 0.8, 3.8], fov: 42 }}
-            dpr={[1, 2]}
-            shadows
-            gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
-          >
-            <SceneLighting />
-            <Suspense fallback={null}>
-              <VcoBottleModel scale={selectedVariant.scale} autoRotate={isRotating} />
-            </Suspense>
-            <OrbitControls
-              ref={controlsRef}
-              enableZoom={true}
-              minDistance={2.5}
-              maxDistance={6.0}
-              enablePan={false}
-              dampingFactor={0.05}
-              rotateSpeed={0.8}
-            />
-          </Canvas>
+        {hasWebGL && !prefersReduced ? (
+          <CanvasErrorBoundary title={FLAGSHIP_PRODUCT.name}>
+            <Canvas
+              frameloop={inView ? 'always' : 'never'}
+              camera={{ position: [0, 0.8, 3.8], fov: 42 }}
+              dpr={[1, 2]}
+              shadows
+              gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
+            >
+              <SceneLighting />
+              <Suspense fallback={null}>
+                <VcoBottleModel
+                  scale={selectedVariant.scale}
+                  hotspots={FLAGSHIP_PRODUCT.hotspots}
+                />
+              </Suspense>
+              <OrbitControls
+                ref={controlsRef}
+                enableZoom={true}
+                minDistance={2.5}
+                maxDistance={6.0}
+                enablePan={false}
+                autoRotate={isRotating}
+                autoRotateSpeed={2.0}
+                dampingFactor={0.05}
+                rotateSpeed={0.8}
+              />
+            </Canvas>
+          </CanvasErrorBoundary>
         ) : (
           <div className="w-80 h-80">
             <FallbackPoster title={FLAGSHIP_PRODUCT.name} />
@@ -136,14 +150,24 @@ export const Section05Product3D: React.FC = () => {
         </div>
       </div>
 
-      {/* 3 Hotspot Pins Info Strip */}
+      {/* Accessible Hotspots Summary Strip */}
       <div className="relative z-10 max-w-6xl mx-auto w-full mt-8">
         <div className="text-xs uppercase tracking-wider text-coconut-cream/60 mb-3 font-semibold">
-          Titik Inspeksi Kualitas & Keberlanjutan:
+          Spesifikasi Kualitas & Keberlanjutan Terverifikasi:
         </div>
-        <div className="flex flex-wrap items-center gap-3">
-          {FLAGSHIP_PRODUCT.hotspots?.map((hotspot, idx) => (
-            <HotspotPin key={hotspot.id} hotspot={hotspot} index={idx} />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {FLAGSHIP_PRODUCT.hotspots?.map((hotspot) => (
+            <div
+              key={hotspot.id}
+              className="p-4 rounded-2xl bg-coconut-green/30 border border-coconut-cream/10 backdrop-blur-sm"
+            >
+              <h4 className="font-display text-sm font-bold text-coconut-lime mb-1">
+                {hotspot.title}
+              </h4>
+              <p className="text-xs text-coconut-cream/75 font-light leading-relaxed">
+                {hotspot.description}
+              </p>
+            </div>
           ))}
         </div>
       </div>
